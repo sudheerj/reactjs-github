@@ -2,7 +2,7 @@
   "name": "reactjs-github",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sudheerj.github.io/react-github",
+  "homepage": "https://sudheerj.github.io/reactjs-github",
   "dependencies": {
     "axios": "0.13.1",
     "bootstrap": "^3.3.5",
