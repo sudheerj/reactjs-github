@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import {InputText} from 'primereact/components/inputtext/InputText';
+
 
 export default class RepositoryFilter extends React.Component  {
   render() {
     return (
-      <section className="border-bottom">
-        <input
-          type="text"
-          placeholder="Filter repositories..."
-          className="form-control"
+      <div className="border-bottom">
+        <InputText
+          type="text" className="form-control width-full js-autosearch-field"
+          placeholder={this.props.placeholder}
           onKeyUp={({target: {value}}) => this.props.onUpdate(value)}
         />
-      </section>
+      </div>
     );
   }
 }

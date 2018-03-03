@@ -2,12 +2,13 @@
   "name": "reactjs-github",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/sudheerj/react-github",
+  "homepage": "https://sudheerj.github.com/react-github",
   "dependencies": {
     "axios": "0.13.1",
     "bootstrap": "^3.3.5",
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
+    "gh-pages": "^1.1.0",
     "history": "^3.0.0",
     "moment": "^2.10.6",
     "primereact": "^1.4.0",
@@ -22,6 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

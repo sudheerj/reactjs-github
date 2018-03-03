@@ -4,8 +4,6 @@ import {Button} from "primereact/components/button/Button";
 import {InputText} from "primereact/components/inputtext/InputText";
 import {withRouter} from "react-router-dom";
 import PropTypes from 'prop-types';
-import { createBrowserHistory as createHistory } from "history";
-
 
 class Search extends React.Component {
     constructor() {
@@ -18,8 +16,6 @@ class Search extends React.Component {
 
     handleClick = (e) => {
         e.preventDefault();
-        console.log(`/${this.state.value}`)
-        //this.context.history.push({pathname: `/${this.state.value}`});
         this.props.history.push(`/${this.state.value}`);
     }
 
@@ -27,7 +23,7 @@ class Search extends React.Component {
 
         return (
 
-            <form className="container home" >
+            <form className="container home">
                 <Card title="Github account" style={{width: '360px', left: '100px', top: '200px'}}
                       className="ui-card-shadow">
                     <div className="ui-inputgroup">
@@ -37,9 +33,9 @@ class Search extends React.Component {
                     </div>
                 </Card>
             </form>
-    );
+        );
     }
-    }
+}
 
 export default withRouter(Search);
 

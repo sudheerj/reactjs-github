@@ -6,41 +6,60 @@ import Followers from './Followers'
 import Following from './Following'
 import RepositoryFilter from './RepositoryFilter'
 import PropTypes from 'prop-types';
+import {TabView, TabPanel} from 'primereact/components/tabview/TabView';
 
-export default class Github extends React.Component  {
-  constructor(props) {
-    super(props)
-    this.state = {filter: ''}
+export default class Github extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {repoFilter: '', starFilter: ''}
 
-  }
+    }
 
-  handleFilterUpdate = (filter) => {
-    this.setState({filter})
-  }
+    handleRepoFilterUpdate = (repoFilter) => {
+        this.setState({repoFilter})
+    }
 
-  render() {
-    const {username} = this.props.match.params
-    const {filter} = this.state
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-3">
-            <UserProfile username={username} />
-          </div>
-            <h3>Repositories</h3>
-            <RepositoryFilter onUpdate={this.handleFilterUpdate} />
-            <Repositories filter={filter} username={username} />
-            <Stars filter={filter} username={username} />
-            <Followers username={username} />
-            <Following username={username} />
-          </div>
-        </div>
-    );
-  }
+    handleStarFilterUpdate = (starFilter) => {
+        this.setState({starFilter})
+    }
+
+    render() {
+        const {username} = this.props.match.params
+        const {repoFilter, starFilter} = this.state
+        return (
+            <div className="container">
+                <div className="content-wrapper" style={{padding:'3em 11em 1em 11em'}}>
+                    <div className="ui-g">
+                        <div className="ui-g-3">
+                            <UserProfile username={username}/>
+                        </div>
+                        <div className="ui-g-9">
+                            <TabView>
+                                <TabPanel header="Repositories">
+                                    <RepositoryFilter onUpdate={this.handleRepoFilterUpdate} placeholder="Search repositories…"/>
+                                    <Repositories filter={repoFilter}  username={username}/>
+                                </TabPanel>
+                                <TabPanel header="Stars" >
+                                    <RepositoryFilter onUpdate={this.handleStarFilterUpdate} placeholder="Search starred repositories…"/>
+                                    <Stars filter={starFilter} username={username}/>
+                                </TabPanel>
+                                <TabPanel header="Followers">
+                                    <Followers username={username}/>
+                                </TabPanel>
+                                <TabPanel header="Following">
+                                    <Following username={username}/>
+                                </TabPanel>
+                            </TabView>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 Github.propTypes = {
     params: PropTypes.shape({
         username: PropTypes.string,
     }),
-  }
+}

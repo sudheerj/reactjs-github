@@ -1,64 +1,76 @@
 import React from 'react';
 import {getUserData} from '../services/github-api'
 import PropTypes from 'prop-types';
+import '../App.css';
 
-export default class UserProfile extends React.Component  {
-  constructor() {
-    super()
-    this.state = {user: {}, orgs: []}
-  }
+export default class UserProfile extends React.Component {
+    constructor() {
+        super()
+        this.state = {user: {}, orgs: []}
+    }
 
-  getUser() {
-    const {username} = this.props
-    getUserData(username)
-      .then(({user, orgs}) => {
-        this.setState({user, orgs});
-      });
-  }
+    getUser() {
+        const {username} = this.props
+        getUserData(username)
+            .then(({user, orgs}) => {
+                this.setState({user, orgs});
+            });
+    }
 
-  componentWillMount() {
-    this.getUser();
-  }
+    componentWillMount() {
+        this.getUser();
+    }
 
-  render() {
-    const {user, orgs} = this.state;
-    return (
-      <div>
-        <section className="user border-bottom">
-          <img
-            src={user.avatar_url}
-            className="img-rounded img-responsive"
-            alt="User Avatar"
-          />
-          <h2>{user.name}</h2>
-          <h5>{user.login}</h5>
-          <div className="user-profile-bio">{user.bio}</div>
-        </section>
-       {/* <section className="stats border-bottom">
-          <ProfileStat value={user.followers} label="followers" />
-          <ProfileStat value={user.public_repos} label="repositories" />
-          <ProfileStat value={user.following} label="following" />
-        </section>*/}
-        <section className="user border-bottom">
-          <h2>{user.email}</h2>
-        </section>
-        <section className="orgs">
-          <h4>Organizations</h4>
-          {orgs.map(org => (
-            <img
-              key={org.id}
-              src={org.avatar_url}
-              alt="Organization Avatar"
-              data-tip={org.login}
-            />
-          ))}
-          {/*<Tooltip effect="solid" />*/}
-        </section>
-      </div>
-    );
-  }
+    render() {
+        const {user, orgs} = this.state;
+        return (
+            <div>
+                <div className="user border-bottom">
+                    <img
+                        src={user.avatar_url} width="230" height="230"
+                        className="img-rounded img-responsive"
+                        alt="User Avatar"/>
+                    <h1 className="vcard-names">
+                        <span className="p-name vcard-fullname d-block overflow-hidden">{user.name}</span>
+                        <span className="p-nickname vcard-username d-block">{user.login}</span>
+                    </h1>
+                    <div className="p-note user-profile-bio">
+                        <div>{user.bio}</div>
+                    </div>
+                </div>
+                <div className="border-top py-3 clearfix border-bottom">
+                    <h2 className="mb-1 h4">Organizations</h2>
+                    {orgs.map(org => (
+                        <img
+                            key={org.id}
+                            src={org.avatar_url}
+                            alt="Organization Avatar"
+                            data-tip={org.login} height={35} width={35} className="avatar"
+                        />
+                    ))}
+                    {/*<Tooltip effect="solid" />*/}
+                </div>
+                <div className="border-bottom">
+                    <span>
+                        <small>Repositories</small>
+                        <h2>{user.public_repos}</h2>
+                        <small>Followers</small>
+                        <h2>{user.followers}</h2>
+                        <small>Following</small>
+                        <h2>{user.following}</h2>
+                    </span>
+                    <span>
+
+                    </span>
+                    <span>
+
+                    </span>
+                </div>
+            </div>
+        );
+    }
 }
 
 UserProfile.propTypes = {
-  username: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired
 }
