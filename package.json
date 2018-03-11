@@ -1,0 +1,45 @@
+{
+  "name": "reactjs-github",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://sudheerj.github.io/reactjs-github",
+  "dependencies": {
+    "axios": "0.13.1",
+    "bootstrap": "^3.3.5",
+    "classnames": "^2.2.5",
+    "font-awesome": "^4.7.0",
+    "gh-pages": "^1.1.0",
+    "history": "^3.0.0",
+    "moment": "^2.10.6",
+    "primereact": "^1.4.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.11.2"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --devtool eval-source-map --history-api-fallback --open",
+    "build": "webpack -p",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
