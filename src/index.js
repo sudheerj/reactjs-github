@@ -12,7 +12,7 @@ import 'font-awesome/css/font-awesome.css';
 ReactDOM.render(
     <Router>
         <div>
-            <Route exact path="/" component={Search}/>
+            <Route exact path="/reactjs-github" component={Search}/>
             <Route path="/:username" component={Github}/>
         </div>
     </Router>, document.getElementById('root'));
